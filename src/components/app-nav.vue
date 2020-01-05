@@ -13,7 +13,7 @@
         router
       >
         <template v-for="(item,index) in routes" v-if="item.meta">
-          <el-submenu :index="item.name || item.path" :key="index">
+          <el-submenu v-if="item && item.children" :index="item.name || item.path" :key="index">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span>{{item.meta.title}}</span>
@@ -58,7 +58,7 @@ export default {
   },
   mounted() {
     this.routes = this.$router.options.routes;
-    console.log(this.$router, this.routes);
+    console.log(this.routes);
   },
   methods: {
     handleOpen(key, keyPath) {
